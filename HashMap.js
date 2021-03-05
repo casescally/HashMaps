@@ -18,12 +18,23 @@ class HashMap {
     const linkedList = this.hashmap[arrayIndex];
     if (linkedList.head === null) {
       linkedList.addToHead({ key, value });
-      let current = this.linkedList.head;
-      while (current) {
-        current.next();
-      }
       return;
     }
+    let current = linkedList.head;
+    while (current) {
+      if (current.data.key === key) {
+        current.data = { key, value };
+      }
+      if (!current.next) {
+        current.next = new Node({ key, value });
+        break;
+      }
+      current = current.next;
+    }
+  }
+
+  retrieve(key) {
+    const arrayIndex = this.hash(key);
   }
 }
 
